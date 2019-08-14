@@ -1,10 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import { ADDCAR_FEATURES } from '../actions/carActions';
 
 const AdditionalFeature = props => {
+  const add = useDispatch();
+  const addItem = e => {
+    add({ type: ADDCAR_FEATURES, payload: props.feature })
+  }
   return (
     <li>
-      {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button">Add</button>
+      <button className="button" onClick={addItem}>Add</button>
       {props.feature.name} (+{props.feature.price})
     </li>
   );
