@@ -3,17 +3,17 @@ import AdditionalFeature from './AdditionalFeature';
 import { useSelector } from 'react-redux'
 
 const AdditionalFeatures = () => {
-  const state = useSelector(state => state);
+  const additionalState = useSelector( state => state);////The selector will be called with the entire Redux store state as its only argument.
   return (
     <div className="content">
       <h4>Additional Features</h4>
-      {state.store.length ? (
+      {additionalState.store.length ? (
         <ol type="1">
-          {state.store.map(item => (
-            <AdditionalFeature key={item.id} feature={item} />
-          ))}
+          {additionalState.store.map(s=> ///grabbing state from the store and mapping over it to create a new array 
+            (<AdditionalFeature key={s.id} feature={s} />)
+          )}
         </ol>
-      ) : (
+      ) : (//^ ternary  statement (if/else)
         <p>Nice looking car!</p>
       )}
     </div>

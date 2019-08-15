@@ -1,11 +1,11 @@
-import { ADDCAR_FEATURES, TAKEAWAY_FEATURE } from "../actions/carActions";
+import { ADDCAR_FEATURES, TAKEAWAY_FEATURE } from "../actions/carActions";///passing my actions into my reducer.js
 
 
-const initialState = {
+const initialState = {////...state, car: {...state.car, features: [...state.car.features] to access features in initial state}
   additionalPrice: 0,
   car: {
     price: 26395,
-    name: "2019 Dodge Charger",
+    name: "2019 Dodge Charger",///changed because I like dodge chargers
     image:
       "https://fs2.ebait.biz/c4RpU5aF/review_337034_1.jpg",
     features: []
@@ -20,7 +20,7 @@ const initialState = {
 
 export const CarReducers = (state = initialState, action) => {
   switch (action.type) {
-    case ADDCAR_FEATURES:
+    case ADDCAR_FEATURES:///add
       return {
         ...state,
         car: {
@@ -34,14 +34,14 @@ export const CarReducers = (state = initialState, action) => {
             return true;
           }
         }),
-        additionalPrice: state.additionalPrice + action.payload.price
+        additionalPrice: state.additionalPrice + action.payload.price///need this as we need the total to update
       };
-    case TAKEAWAY_FEATURE:
+    case TAKEAWAY_FEATURE:///remove
       return {
         ...state,
         car: {
           ...state.car,
-          features: state.car.features.filter(feature => {
+          features: state.car.features.filter(feature => {        {/*..filter through car.features */}
             if (feature.id === action.payload.id) {
               return false;
             } else {
@@ -50,7 +50,7 @@ export const CarReducers = (state = initialState, action) => {
           })
         },
         store: [...state.store, action.payload],
-        additionalPrice: state.additionalPrice - action.payload.price
+        additionalPrice: state.additionalPrice - action.payload.price////need this as we need the total to update
       };
     default:
       return state;
